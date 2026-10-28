@@ -147,9 +147,6 @@
             }
         }
 
-        /* Slow floating motion for the featured cards.
-           Uses the "translate" property so it stacks with
-           the hover "transform" instead of replacing it. */
         @keyframes floatCard {
             0%, 100% {
                 translate: 0 0;
@@ -261,6 +258,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 8px;
             padding: 13px 12px;
             background: rgba(255, 255, 255, 0.94);
@@ -274,9 +272,17 @@
             border-radius: 25px;
             font-size: 0.92rem;
             font-weight: 650;
+            white-space: nowrap;
             transition: color 0.3s ease,
                         background 0.3s ease,
                         transform 0.3s ease;
+        }
+
+        /* Highlight Student Works Link */
+        .navigation a.main-link {
+            background: var(--maroon);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .navigation a:hover {
@@ -365,28 +371,6 @@
             max-width: 700px;
             margin: auto;
             color: #634852;
-        }
-
-        .student-photo {
-            display: block;
-            width: 200px;
-            max-width: 80%;
-            margin: 25px auto 18px;
-            padding: 7px;
-            border: 2px solid #f1b5c6;
-            border-radius: 25px;
-            background: white;
-            box-shadow: 0 10px 25px rgba(128, 0, 32, 0.18);
-            opacity: 0.94;
-            transition: transform 0.35s ease,
-                        opacity 0.35s ease,
-                        box-shadow 0.35s ease;
-        }
-
-        .student-photo:hover {
-            transform: scale(1.04) rotate(1deg);
-            opacity: 1;
-            box-shadow: 0 15px 35px rgba(128, 0, 32, 0.27);
         }
 
         /* =====================================
@@ -503,7 +487,6 @@
             animation-delay: 0.3s, 2.1s;
         }
 
-        /* Decorative glow behind each picture */
         .featured-card::before {
             content: "";
             position: absolute;
@@ -965,12 +948,22 @@
             }
 
             .navigation {
-                gap: 4px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 10px 8px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .navigation::-webkit-scrollbar {
+                display: none;
             }
 
             .navigation a {
-                padding: 8px 10px;
+                margin: 0 4px;
+                padding: 6px 12px;
                 font-size: 0.82rem;
+                flex-shrink: 0;
             }
 
             .header {
@@ -997,11 +990,6 @@
         @media (max-width: 420px) {
             .logo {
                 width: 100px;
-            }
-
-            .navigation a {
-                font-size: 0.76rem;
-                padding: 7px 8px;
             }
 
             .button {
@@ -1071,7 +1059,7 @@
 
     <!-- NAVIGATION -->
     <nav class="navigation" aria-label="Main navigation">
-
+        <a href="index.html" class="main-link">&larr; STUDENT WORKS</a>
         <a href="#top">Home</a>
         <a href="#featured-students">Featured Students</a>
         <a href="#student-information">Students</a>
@@ -1637,9 +1625,6 @@
         <p>
             <a href="#top">Back to Top ↑</a>
         </p>
-	<p>
-	    <a href="index.html">Back to student profile works.</a>
-	</p>
 
         <p>&copy; 2026 All Rights Reserved</p>
 
