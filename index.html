@@ -35,7 +35,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;
   background:rgba(255,255,255,.1);backdrop-filter:blur(14px);
   border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.35);
   animation:dropIn .9s cubic-bezier(.2,1.2,.3,1) both;max-width:96vw;flex-wrap:wrap;justify-content:center}
-nav a{padding:9px 18px;border-radius:999px;font-weight:600;font-size:.85rem;transition:.3s}
+nav a{padding:9px 18px;border-radius:999px;font-weight:600;font-size:.85rem;transition:.3s;white-space:nowrap}
 nav a:hover{background:linear-gradient(135deg,var(--o1),var(--o2));transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,106,0,.5)}
 @keyframes dropIn{from{opacity:0;transform:translate(-50%,-80px)}to{opacity:1;transform:translate(-50%,0)}}
 
@@ -57,7 +57,6 @@ nav a:hover{background:linear-gradient(135deg,var(--o1),var(--o2));transform:tra
   box-shadow:0 20px 50px rgba(0,0,0,.55);animation:bob 5s ease-in-out infinite}
 .photo .initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-size:5rem;font-weight:800;letter-spacing:2px;color:#fff}
-/* put your picture in this folder as profile.jpg */
 .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .orbit{position:absolute;inset:-40px;animation:spin 9s linear infinite}
 .orbit i{position:absolute;top:50%;left:-6px;width:16px;height:16px;border-radius:50%;
@@ -162,7 +161,37 @@ section{padding:90px 6vw}
 footer{text-align:center;padding:30px;color:var(--o3);border-top:1px solid rgba(255,170,90,.25);font-size:.9rem}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media (max-width:600px){.photo-stage{width:250px;height:250px}.course{animation:none;border:none;white-space:normal}}
+
+/* ---------- Mobile Fix for Navigation & Face Overlap ---------- */
+@media (max-width:600px){
+  nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 6px 10px;
+    max-width: 94vw;
+  }
+  nav::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for clean look */
+  }
+  nav a {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .hero {
+    padding-top: 130px; /* Gives enough breathing room below the single-row nav */
+  }
+  .photo-stage{
+    width:250px;
+    height:250px;
+  }
+  .course{
+    animation:none;
+    border:none;
+    white-space:normal;
+  }
+}
 </style>
 </head>
 <body>
