@@ -21,28 +21,44 @@
 
         /* Navigation */
         nav {
-            width: 90%;
-            margin: 25px auto;
-            padding: 18px;
             background-color: #C75B16;
-            border-radius: 12px;
+            padding: 12px 15px;
             text-align: center;
-            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         nav a {
             display: inline-block;
-            margin: 5px 12px;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
-            transition: color 0.3s ease, transform 0.3s ease;
+            margin: 5px 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: color 0.3s ease,
+                        transform 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        /* Highlight Student Works Link */
+        nav a.main-link {
+            background-color: #873D0D;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         nav a:hover {
             color: #FFE0C2;
-            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         nav a:focus-visible,
@@ -54,6 +70,7 @@
         /* Main heading */
         header {
             width: 90%;
+            max-width: 1100px;
             margin: 30px auto;
             padding: 40px 20px;
             text-align: center;
@@ -65,7 +82,7 @@
 
         header h1 {
             font-family: Georgia, serif;
-            font-size: 42px;
+            font-size: clamp(2rem, 5vw, 2.8rem);
             text-shadow: 3px 3px 5px rgba(70, 35, 15, 0.4);
         }
 
@@ -201,13 +218,22 @@
         /* Responsive design */
         @media (max-width: 768px) {
             nav {
-                width: 94%;
-                padding: 12px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 10px 8px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            nav::-webkit-scrollbar {
+                display: none; /* Hide scrollbar on mobile */
             }
 
             nav a {
-                margin: 6px 8px;
-                font-size: 12px;
+                margin: 0 4px;
+                padding: 6px 12px;
+                font-size: 0.82rem;
+                flex-shrink: 0;
             }
 
             header,
@@ -251,7 +277,8 @@
 <body>
 
     <!-- Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
+        <a href="index.html" class="main-link">&larr; STUDENT WORKS</a>
         <a href="allaboutkrista.html">HOME</a>
         <a href="education.html">EDUCATIONAL BACKGROUND</a>
         <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
@@ -339,20 +366,16 @@
 
         <!-- Back to Homepage -->
         <a href="allaboutkrista.html" class="back-link">
-            ← BACK TO HOMEPAGE
+            &larr; BACK TO HOMEPAGE
         </a>
 
     </main>
 
     <!-- Footer -->
     <footer>
-	<p>
-	    <a href="index.html">Back to student profile works.</a>
-	</p>
         <p>Made with 🧡 by Krista Innova S. Balderas</p>
         <p>My Personal Biography &copy; 2026</p>
     </footer>
 
 </body>
 </html>
-
