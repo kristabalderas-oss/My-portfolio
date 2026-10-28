@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krista Innova S. Balderas | BSIT Student</title>
+<style>
+:root{
+  --o1:#ff6a00; --o2:#ff9a3c; --o3:#ffc27a; --o4:#d44f00;
+  --dark:#1f0d03; --cream:#fff5ea;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins','Segoe UI',system-ui,sans-serif;
+  background:var(--dark);color:#fff;overflow-x:hidden;line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- animated background ---------- */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;
+  background:linear-gradient(120deg,#1f0d03,#4a1c04,#7a2e00,#1f0d03);
+  background-size:300% 300%;animation:bgShift 16s ease infinite}
+.bg span{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;
+  background:radial-gradient(circle,var(--o2),var(--o1));animation:float 14s ease-in-out infinite}
+.bg span:nth-child(1){width:420px;height:420px;top:-100px;left:-80px}
+.bg span:nth-child(2){width:320px;height:320px;top:40%;right:-80px;animation-delay:-4s;animation-duration:18s}
+.bg span:nth-child(3){width:380px;height:380px;bottom:-120px;left:30%;animation-delay:-8s;animation-duration:20s}
+@keyframes bgShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-50px) scale(1.15)}66%{transform:translate(-40px,60px) scale(.9)}}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;gap:6px;padding:8px;border-radius:999px;
+  background:rgba(255,255,255,.1);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 30px rgba(0,0,0,.35);
+  animation:dropIn .9s cubic-bezier(.2,1.2,.3,1) both;max-width:96vw;flex-wrap:wrap;justify-content:center}
+nav a{padding:9px 18px;border-radius:999px;font-weight:600;font-size:.85rem;transition:.3s}
+nav a:hover{background:linear-gradient(135deg,var(--o1),var(--o2));transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,106,0,.5)}
+@keyframes dropIn{from{opacity:0;transform:translate(-50%,-80px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* ---------- hero ---------- */
+.hero{display:flex;align-items:center;justify-content:center;
+  gap:70px;flex-wrap:wrap;padding:130px 6vw 40px}
+
+.photo-stage{position:relative;width:320px;height:320px;flex-shrink:0;
+  animation:popIn 1.1s cubic-bezier(.2,1.3,.4,1) .3s both}
+.ring{position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--o1),var(--o3),#fff,var(--o2),var(--o4),var(--o1));
+  animation:spin 6s linear infinite;
+  -webkit-mask:radial-gradient(circle,transparent 62%,#000 63%);mask:radial-gradient(circle,transparent 62%,#000 63%);
+  filter:drop-shadow(0 0 18px var(--o1))}
+.ring.two{inset:-18px;animation-duration:11s;animation-direction:reverse;opacity:.6;
+  -webkit-mask:radial-gradient(circle,transparent 67%,#000 68%);mask:radial-gradient(circle,transparent 67%,#000 68%)}
+.photo{position:absolute;inset:22px;border-radius:50%;overflow:hidden;
+  background:linear-gradient(135deg,var(--o4),var(--o1));
+  box-shadow:0 20px 50px rgba(0,0,0,.55);animation:bob 5s ease-in-out infinite}
+.photo .initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:5rem;font-weight:800;letter-spacing:2px;color:#fff}
+/* put your picture in this folder as profile.jpg */
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.orbit{position:absolute;inset:-40px;animation:spin 9s linear infinite}
+.orbit i{position:absolute;top:50%;left:-6px;width:16px;height:16px;border-radius:50%;
+  background:var(--o3);box-shadow:0 0 18px 4px var(--o2)}
+.orbit.b{animation-duration:14s;animation-direction:reverse;inset:-58px}
+.orbit.b i{width:11px;height:11px;background:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes popIn{from{opacity:0;transform:scale(.3) rotate(-30deg)}to{opacity:1;transform:none}}
+
+.intro{max-width:560px;animation:slideIn 1s ease .5s both}
+@keyframes slideIn{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:none}}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:3px;
+  padding:7px 18px;border-radius:999px;margin-bottom:16px;
+  background:rgba(255,154,60,.18);border:1px solid var(--o2);color:var(--o3);
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,154,60,.6)}50%{box-shadow:0 0 0 12px rgba(255,154,60,0)}}
+h1{font-size:clamp(2.2rem,5.5vw,3.7rem);line-height:1.08;font-weight:800;
+  background:linear-gradient(90deg,#fff,var(--o3),var(--o2),#fff);background-size:250% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:250% center}}
+.course{margin:12px 0 18px;font-size:1.25rem;font-weight:600;color:var(--o3);
+  display:inline-block;overflow:hidden;white-space:nowrap;max-width:100%;
+  border-right:3px solid var(--o2);
+  animation:typing 3s steps(32) 1.2s both, caret .8s step-end infinite}
+@keyframes typing{from{width:0}to{width:32ch}}
+@keyframes caret{50%{border-color:transparent}}
+.desc{color:#ffe6cf;font-size:1.02rem}
+
+.btns{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}
+.btn{position:relative;overflow:hidden;padding:15px 30px;border-radius:999px;font-weight:700;
+  transition:.35s;display:inline-block}
+.btn.fill{background:linear-gradient(135deg,var(--o1),var(--o2));box-shadow:0 10px 28px rgba(255,106,0,.55)}
+.btn.line{border:2px solid var(--o2);color:var(--o3)}
+.btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:.7s}
+.btn:hover::after{left:140%}
+.btn:hover{transform:translateY(-5px) scale(1.05)}
+.btn.line:hover{background:var(--o1);color:#fff;border-color:var(--o1)}
+
+.scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  width:26px;height:44px;border:2px solid var(--o3);border-radius:20px}
+.scroll::after{content:"";position:absolute;top:8px;left:50%;width:4px;height:8px;margin-left:-2px;
+  background:var(--o3);border-radius:4px;animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(16px)}}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;background:linear-gradient(90deg,var(--o4),var(--o1),var(--o2));
+  transform:rotate(-1.2deg);margin:20px -2vw;box-shadow:0 8px 30px rgba(255,106,0,.4)}
+.track{display:flex;width:max-content;animation:scrollX 22s linear infinite}
+.track span{padding:14px 34px;font-weight:800;letter-spacing:2px;white-space:nowrap}
+.track span::after{content:"✦";margin-left:34px;color:#fff6}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:90px 6vw}
+.title{text-align:center;margin-bottom:50px}
+.title h2{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--o3)}
+.title .bar{width:90px;height:5px;margin:12px auto 0;border-radius:5px;
+  background:linear-gradient(90deg,var(--o1),var(--o3),var(--o1));background-size:200%;animation:slideBar 2s linear infinite}
+@keyframes slideBar{to{background-position:200% 0}}
+
+.works{max-width:1150px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+.card{position:relative;padding:34px 28px;border-radius:24px;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,170,90,.3);transition:.4s;overflow:hidden;
+  animation:rise .9s ease both}
+.card:nth-child(2){animation-delay:.15s}.card:nth-child(3){animation-delay:.3s}
+.card::before{content:"";position:absolute;inset:-2px;z-index:-1;border-radius:26px;
+  background:conic-gradient(from 0deg,var(--o1),transparent,var(--o3),transparent,var(--o1));
+  opacity:0;transition:.4s;animation:spin 5s linear infinite}
+.card:hover{transform:translateY(-14px) rotate(-1deg);background:rgba(255,106,0,.18);
+  box-shadow:0 24px 50px rgba(255,106,0,.35)}
+.card:hover::before{opacity:1}
+.icon{font-size:2.8rem;display:inline-block;margin-bottom:12px;animation:wiggle 3s ease-in-out infinite}
+.card:nth-child(2) .icon{animation-delay:-1s}.card:nth-child(3) .icon{animation-delay:-2s}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(8deg) translateY(-8px)}}
+.card h3{color:var(--o3);margin-bottom:8px;font-size:1.25rem}
+.card p{color:#ffe0c4;font-size:.95rem}
+.tag{display:inline-block;margin-top:16px;padding:5px 14px;border-radius:999px;font-size:.75rem;font-weight:700;
+  background:linear-gradient(135deg,var(--o1),var(--o2))}
+@keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@supports (animation-timeline:view()){
+  .card,.link{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+}
+
+/* ---------- link cards ---------- */
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:950px;margin:0 auto}
+.link{position:relative;display:block;padding:50px 30px;text-align:center;border-radius:28px;
+  font-size:1.5rem;font-weight:800;letter-spacing:1px;overflow:hidden;
+  background:linear-gradient(135deg,var(--o1),var(--o2),var(--o4));background-size:200% 200%;
+  animation:bgShift 6s ease infinite;transition:.4s;box-shadow:0 18px 40px rgba(255,106,0,.4)}
+.link small{display:block;margin-top:8px;font-size:.9rem;font-weight:500;opacity:.92;letter-spacing:0}
+.link .arrow{display:inline-block;margin-left:10px;transition:.3s}
+.link:hover{transform:translateY(-12px) scale(1.04);box-shadow:0 28px 60px rgba(255,140,40,.6)}
+.link:hover .arrow{transform:translateX(12px)}
+.link::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;
+  background:rgba(255,255,255,.18);top:-60px;right:-50px;transition:.5s}
+.link:hover::before{transform:scale(3)}
+
+footer{text-align:center;padding:30px;color:var(--o3);border-top:1px solid rgba(255,170,90,.25);font-size:.9rem}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:600px){.photo-stage{width:250px;height:250px}.course{animation:none;border:none;white-space:normal}}
+</style>
+</head>
+<body>
+
+<div class="bg"><span></span><span></span><span></span></div>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#works">My Works</a>
+  <a href="allaboutkrista.html">About Me</a>
+  <a href="Bsit.html">BSIT Registration Form</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="photo-stage">
+    <div class="ring two"></div>
+    <div class="ring"></div>
+    <div class="orbit"><i></i></div>
+    <div class="orbit b"><i></i></div>
+    <div class="photo">
+      <div class="initials">KB</div>
+      <img src="student.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="intro">
+    <span class="badge">STUDENT PROFILE</span>
+    <h1>Krista Innova S. Balderas</h1>
+    <div class="course">Bachelor in Information Technology</div>
+    <p class="desc">
+      Hi! I'm an IT student who loves building creative things with code.
+      I enjoy web design, problem solving, and turning ideas into
+      colorful, working projects.
+    </p>
+  </div>
+</header>
+
+<section id="works">
+  <div class="title"><h2>My Works</h2><div class="bar"></div></div>
+</section>
+
+<section style="padding-top:0">
+  <div class="links">
+    <a class="link" href="allaboutkrista.html">About Me<span class="arrow">→</span><small>Get to know me better</small></a>
+    <a class="link" href="Bsit.html">BSIT REGISTRATION FORM<span class="arrow">→</span><small>Fill out the form here</small></a>
+  </div>
+</section>
+
+<footer>© 2026 Krista Innova S. Balderas · Bachelor in Information Technology</footer>
+
+</body>
+</html>

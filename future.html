@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Future Goals</title>
+
+    <style>
+        /* General Styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E6;
+            color: #654438;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #C75B16;
+            padding: 18px 15px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 7px 12px;
+            transition: color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFE0C2;
+            transform: translateY(-3px);
+        }
+
+        nav a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid #654438;
+            outline-offset: 4px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #E87524, #C75B16);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            text-shadow: 3px 3px 5px #78350F;
+            margin: 0 0 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* Main Content */
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 2rem;
+            margin: 40px 0 25px;
+        }
+
+        /* Introduction */
+        .intro {
+            background-color: #FFFDF9;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+            margin-bottom: 30px;
+        }
+
+        /* Goal Cards */
+        .goal-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .goal-card {
+            background-color: #FFFDF9;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 5px solid #E87524;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .goal-card:nth-child(even) {
+            background-color: #FFE0C2;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(101, 68, 56, 0.25);
+            background-color: #FFF0E0;
+        }
+
+        .goal-card h2 {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        /* Images */
+        .goal-image {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            height: 260px;
+            object-fit: cover;
+            margin: 20px auto;
+            border-radius: 12px;
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.2);
+
+            transition: transform 0.4s ease,
+                        opacity 0.4s ease,
+                        box-shadow 0.4s ease;
+        }
+
+        .goal-image:hover {
+            transform: scale(1.04) rotate(1deg);
+            opacity: 1;
+            box-shadow: 0 8px 20px rgba(101, 68, 56, 0.3);
+        }
+
+        /* Button */
+        .back-container {
+            text-align: center;
+            margin: 45px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #C75B16;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: background-color 0.3s ease,
+                        transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #873D0D;
+            transform: scale(1.06);
+            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.25);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #C75B16;
+            color: white;
+            text-align: center;
+            padding: 22px 15px;
+            margin-top: 40px;
+        }
+
+        /* Tablet Layout */
+        @media (max-width: 800px) {
+            .goal-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 15px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            nav a {
+                margin: 5px 7px;
+                font-size: 0.9rem;
+            }
+
+            .intro,
+            .goal-card {
+                padding: 20px;
+            }
+
+            .goal-image {
+                height: 220px;
+            }
+        }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav aria-label="Main navigation">
+        <a href="allaboutkrista.html">HOME</a>
+        <a href="education.html">EDUCATIONAL BACKGROUND</a>
+        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
+        <a href="future.html">MY FUTURE GOAL</a>
+        <a href="website.html">FAVORITE WEBSITE</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>MY FUTURE GOALS</h1>
+        <p>Dream big, work hard, and enjoy the journey.</p>
+    </header>
+
+    <main>
+
+        <!-- Introduction -->
+        <section>
+            <h2 class="section-title">My Dreams and Aspirations</h2>
+
+            <div class="intro">
+                <p>
+                    Everyone has dreams and goals that they hope to
+                    achieve someday. My future goals are not only
+                    about having a successful career, but also about
+                    having the freedom to experience life, help my
+                    family, and make a positive difference in the
+                    lives of others.
+                </p>
+            </div>
+        </section>
+
+        <!-- Future Goal Cards -->
+        <section>
+            <div class="goal-container">
+
+                <!-- Career Goal -->
+                <article class="goal-card">
+                    <h2>My Career Goal</h2>
+
+                    <p>
+                        In the future, I would like to become a
+                        <strong>successful IT professional</strong>.
+                        I want to build a career that will allow me
+                        to use the skills and knowledge I gained
+                        from studying Information Technology.
+                    </p>
+
+                    <p>
+                        I also hope to earn enough money to give
+                        my family a comfortable life and make them
+                        proud of everything I have accomplished.
+                    </p>
+                </article>
+
+                <!-- Dream Life -->
+                <article class="goal-card">
+                    <h2>My Dream Life</h2>
+
+                    <img src="dreamlife.jpg"
+                         alt="An image representing my dream life"
+                         class="goal-image">
+
+                    <p>
+                        One of my biggest dreams is to become
+                        financially independent and have the
+                        freedom to travel around the world.
+                        I would love to visit different countries,
+                        experience different cultures, and see
+                        beautiful places without constantly
+                        worrying about money.
+                    </p>
+
+                    <p>
+                        I also have a funny dream of owning a
+                        <strong>private island</strong> where I
+                        could enjoy some peaceful time away from
+                        the busy world. It would be my own little
+                        place to relax, enjoy nature, and spend
+                        time doing the things I love.
+                    </p>
+                </article>
+
+                <!-- Helping Others -->
+                <article class="goal-card">
+                    <h2>Helping Others</h2>
+
+                    <p>
+                        Having a successful career and earning
+                        money would not only be for myself.
+                        I would also like to use what I have to
+                        <strong>help people who are in need</strong>.
+                    </p>
+
+                    <p>
+                        I hope to support charities and contribute
+                        to causes that can make a difference in
+                        other people's lives.
+                    </p>
+
+                    <p>
+                        I believe success becomes more meaningful
+                        when you are able to share it with others.
+                        I would like to help my family, support
+                        people who need assistance, and give back
+                        to the community whenever I have the
+                        opportunity.
+                    </p>
+                </article>
+
+                <!-- Fun Dream -->
+                <article class="goal-card">
+                    <h2>My Fun and Random Dream</h2>
+
+                    <img src="fun.jpg"
+                         alt="An image representing my fun dream"
+                         class="goal-image">
+
+                    <p>
+                        And, of course, if I ever become extremely
+                        rich, I would love to spoil myself and
+                        the people around me.
+                    </p>
+
+                    <p>
+                        One of my funniest dreams is to give
+                        everyone an
+                        <strong style="color: #D85F16;">
+                            iPhone 26 Pro Max
+                        </strong>
+                        just because I could!
+                    </p>
+
+                    <p>
+                        Although some of these dreams may sound
+                        unrealistic or funny, they represent the
+                        kind of life I hope to build: a life where
+                        I can be successful, free, generous, and
+                        happy while enjoying the things that
+                        matter to me.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Back Button -->
+        <div class="back-container">
+            <a href="allaboutkrista.html" class="button">
+                &larr; BACK TO HOMEPAGE
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+        <p>Made with 🧡 by Krista Innova S. Balderas</p>
+        <p>My Personal Biography &copy; 2026</p>
+    </footer>
+
+</body>
+</html>

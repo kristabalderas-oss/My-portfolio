@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSIT Student Registration | CTU Argao</title>
+
+    <style>
+        /* =====================================
+           1. GENERAL STYLING
+        ===================================== */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --maroon: #800020;
+            --dark-maroon: #4d0014;
+            --red: #b31335;
+            --pink: #ffe4ec;
+            --text: #38232a;
+            --shadow: 0 10px 30px rgba(90, 0, 25, 0.12);
+        }
+
+        body {
+            margin: 0;
+            position: relative;
+            isolation: isolate;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse at 10% 5%,
+                    rgba(255, 190, 211, 0.8), transparent 35%),
+                radial-gradient(ellipse at 90% 20%,
+                    rgba(219, 139, 169, 0.30), transparent 35%),
+                radial-gradient(ellipse at 15% 65%,
+                    rgba(255, 222, 232, 0.9), transparent 38%),
+                radial-gradient(ellipse at 90% 90%,
+                    rgba(199, 91, 130, 0.25), transparent 35%),
+                linear-gradient(135deg, #fff8fb, #fbe6ee, #fff1f5);
+            background-attachment: fixed;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.45;
+            background:
+                radial-gradient(circle at 8% 30%,
+                    white 0 3px, transparent 4px),
+                radial-gradient(circle at 85% 45%,
+                    white 0 4px, transparent 5px),
+                radial-gradient(circle at 70% 80%,
+                    rgba(128, 0, 32, 0.1) 0 2px, transparent 3px),
+                radial-gradient(circle at 25% 90%,
+                    white 0 5px, transparent 6px);
+            background-size: 180px 180px, 240px 240px,
+                             150px 150px, 220px 220px;
+        }
+
+        a {
+            color: var(--maroon);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--red);
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+        }
+
+        img {
+            height: auto;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.3;
+        }
+
+        h2 {
+            color: var(--maroon);
+            text-shadow: 1px 2px 3px rgba(128, 0, 32, 0.12);
+        }
+
+        header, nav, main, footer {
+            position: relative;
+        }
+
+        /* =====================================
+           2. ANIMATIONS
+        ===================================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
+                box-shadow: 0 5px 18px rgba(128, 0, 32, 0.2);
+            }
+            50% {
+                box-shadow: 0 8px 28px rgba(179, 19, 53, 0.4);
+            }
+        }
+
+        @keyframes floatDecoration {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes pictureEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            from {
+                background-position: -200% center;
+            }
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Slow floating motion for the featured cards.
+           Uses the "translate" property so it stacks with
+           the hover "transform" instead of replacing it. */
+        @keyframes floatCard {
+            0%, 100% {
+                translate: 0 0;
+            }
+            50% {
+                translate: 0 -12px;
+            }
+        }
+
+        /* =====================================
+           3. HEADER
+        ===================================== */
+        .header {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 45px 20px 55px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(
+                135deg, var(--dark-maroon), var(--maroon), #bd2348
+            );
+            border-bottom: 5px solid #f5b9ca;
+            box-shadow: 0 8px 25px rgba(77, 0, 20, 0.22);
+            animation: fadeIn 0.9s ease both;
+        }
+
+        .header::before,
+        .header::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            pointer-events: none;
+        }
+
+        .header::before {
+            width: 300px;
+            height: 300px;
+            top: -160px;
+            left: -65px;
+        }
+
+        .header::after {
+            width: 380px;
+            height: 380px;
+            bottom: -260px;
+            right: -80px;
+        }
+
+        .logo-link {
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.65);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.12);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.06) rotate(-2deg);
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .logo {
+            display: block;
+            width: 125px;
+            max-height: 125px;
+            object-fit: contain;
+            opacity: 0.96;
+        }
+
+        .header h1 {
+            margin: 22px 0 10px;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: white;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.35);
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #ffe1e9;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 500;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 7px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* =====================================
+           4. NAVIGATION
+        ===================================== */
+        .navigation {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 12px;
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid #f0cad5;
+            box-shadow: 0 4px 15px rgba(90, 0, 25, 0.07);
+            backdrop-filter: blur(12px);
+        }
+
+        .navigation a {
+            padding: 9px 15px;
+            border-radius: 25px;
+            font-size: 0.92rem;
+            font-weight: 650;
+            transition: color 0.3s ease,
+                        background 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: white;
+            background: var(--maroon);
+            transform: translateY(-3px);
+        }
+
+        /* =====================================
+           5. MAIN SECTIONS
+        ===================================== */
+        main {
+            width: min(1150px, 92%);
+            margin: 35px auto 55px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: clamp(20px, 4vw, 38px);
+            border: 1px solid rgba(128, 0, 32, 0.09);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease both;
+        }
+
+        .section-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .section-subtitle {
+            margin-bottom: 25px;
+            color: #80616b;
+        }
+
+        .title-line {
+            width: 75px;
+            height: 5px;
+            margin: 12px 0 20px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--maroon), #f19ab3);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .center .title-line {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* =====================================
+           6. WELCOME SECTION
+        ===================================== */
+        .welcome-card {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(22px, 5vw, 45px);
+            border: 1px solid #f4d2dc;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #fff, #fff0f5);
+            box-shadow: var(--shadow);
+            text-align: center;
+            animation: fadeIn 1s ease both;
+        }
+
+        .welcome-card::after {
+            content: "✦";
+            position: absolute;
+            top: 15px;
+            right: 22px;
+            color: #e6a1b4;
+            font-size: 2.5rem;
+            opacity: 0.55;
+            animation: floatDecoration 4s ease-in-out infinite;
+        }
+
+        .welcome-card h2 {
+            margin-top: 0;
+        }
+
+        .welcome-note {
+            max-width: 700px;
+            margin: auto;
+            color: #634852;
+        }
+
+        .student-photo {
+            display: block;
+            width: 200px;
+            max-width: 80%;
+            margin: 25px auto 18px;
+            padding: 7px;
+            border: 2px solid #f1b5c6;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 10px 25px rgba(128, 0, 32, 0.18);
+            opacity: 0.94;
+            transition: transform 0.35s ease,
+                        opacity 0.35s ease,
+                        box-shadow 0.35s ease;
+        }
+
+        .student-photo:hover {
+            transform: scale(1.04) rotate(1deg);
+            opacity: 1;
+            box-shadow: 0 15px 35px rgba(128, 0, 32, 0.27);
+        }
+
+        /* =====================================
+           7. BUTTONS
+        ===================================== */
+        .button {
+            display: inline-block;
+            margin: 8px 5px;
+            padding: 12px 23px;
+            border: 0;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--maroon), #bd2348);
+            color: white;
+            font: inherit;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 18px rgba(128, 0, 32, 0.2);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+        }
+
+        .button:hover {
+            color: white;
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(128, 0, 32, 0.3);
+            background: linear-gradient(135deg, #a00030, #d13c60);
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        iframe:focus-visible,
+        audio:focus-visible,
+        video:focus-visible {
+            outline: 3px solid #e47c9b;
+            outline-offset: 4px;
+        }
+
+        /* =====================================
+           8. FEATURED STUDENTS
+        ===================================== */
+        .featured-section {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 10%,
+                    rgba(255, 208, 224, 0.8), transparent 35%),
+                radial-gradient(circle at 95% 90%,
+                    rgba(190, 90, 125, 0.16), transparent 35%),
+                linear-gradient(135deg, #fff9fb, #ffedf3);
+        }
+
+        .featured-heading {
+            text-align: center;
+        }
+
+        .featured-heading .title-line {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-label {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 15px;
+            border: 1px solid #edc1d0;
+            border-radius: 30px;
+            background: #fff;
+            color: var(--maroon);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .featured-heading .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            text-shadow: 2px 3px 5px rgba(128, 0, 32, 0.15);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .featured-card {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #f0c8d5;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #ffffff, #fff0f5);
+            box-shadow: 0 10px 25px rgba(90, 0, 25, 0.12);
+            text-align: center;
+            transition: transform 0.4s ease,
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+            animation: fadeIn 0.9s ease both,
+                       floatCard 6s ease-in-out 0.9s infinite;
+        }
+
+        .featured-card:nth-child(2) {
+            animation-delay: 0.15s, 1.5s;
+        }
+
+        .featured-card:nth-child(3) {
+            animation-delay: 0.3s, 2.1s;
+        }
+
+        /* Decorative glow behind each picture */
+        .featured-card::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -65px;
+            left: -35px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle, rgba(235, 137, 168, 0.38), transparent 70%
+            );
+            transition: transform 0.5s ease;
+        }
+
+        .featured-card::after {
+            content: "✦";
+            position: absolute;
+            top: 12px;
+            right: 17px;
+            color: #c77a93;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            transition: transform 0.4s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #c66b89;
+            box-shadow: 0 20px 40px rgba(90, 0, 25, 0.2);
+        }
+
+        .featured-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .featured-card:hover::after {
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .featured-picture-frame {
+            position: relative;
+            overflow: hidden;
+            margin: 10px 0 20px;
+            padding: 6px;
+            border: 2px solid #e9b1c3;
+            border-radius: 19px;
+            background: linear-gradient(135deg, #800020, #ed9db5, #fff0f5);
+            box-shadow: 0 8px 20px rgba(128, 0, 32, 0.15);
+            transition: transform 0.4s ease,
+                        box-shadow 0.4s ease;
+        }
+
+        .featured-card:hover .featured-picture-frame {
+            transform: rotate(-2deg) scale(1.025);
+            box-shadow: 0 12px 28px rgba(128, 0, 32, 0.25);
+        }
+
+        .featured-picture {
+            display: block;
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 14px;
+            opacity: 0.9;
+            background: linear-gradient(135deg, #f9dce6, #e8b8c9);
+            transition: transform 0.5s ease,
+                        opacity 0.4s ease,
+                        filter 0.4s ease;
+            animation: pictureEntrance 0.9s ease both;
+        }
+
+        .featured-card:hover .featured-picture {
+            transform: scale(1.09);
+            opacity: 1;
+            filter: saturate(1.12) contrast(1.03);
+        }
+
+        .featured-card h3 {
+            margin: 8px 0 5px;
+            color: var(--maroon);
+            font-size: 1.3rem;
+            text-shadow: 1px 2px 4px rgba(128, 0, 32, 0.08);
+        }
+
+        .featured-role {
+            display: inline-block;
+            margin: 5px 0 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #f9dfe8;
+            color: #800020;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .featured-description {
+            margin: 0 4px 15px;
+            color: #70535d;
+            font-size: 0.93rem;
+            line-height: 1.8;
+        }
+
+        .featured-skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 7px;
+            margin: 15px 0 10px;
+        }
+
+        .skill-tag {
+            padding: 5px 10px;
+            border: 1px solid #edc6d3;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #85304c;
+            font-size: 0.76rem;
+            font-weight: 650;
+            transition: background 0.3s ease,
+                        color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        .featured-card:hover .skill-tag {
+            background: #800020;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .featured-note {
+            margin-top: 28px;
+            padding: 14px;
+            border: 1px dashed #e3a6b9;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #79515f;
+            font-size: 0.88rem;
+            text-align: center;
+        }
+
+        /* =====================================
+           9. STUDENT INFORMATION TABLE
+        ===================================== */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #efd0d9;
+            border-radius: 15px;
+        }
+
+        .student-table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .student-table th {
+            padding: 16px 13px;
+            background: linear-gradient(135deg, var(--dark-maroon), var(--maroon));
+            color: white;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .student-table td {
+            padding: 14px 13px;
+            border-bottom: 1px solid #f2e0e5;
+            transition: background 0.25s ease;
+        }
+
+        .student-table tbody tr:nth-child(even) {
+            background: #fff0f4;
+        }
+
+        .student-table tbody tr:hover td {
+            background: #ffe0e9;
+        }
+
+        .student-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =====================================
+           10. MULTIMEDIA CARDS
+        ===================================== */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .media-card {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid #f0d2db;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #fff, #fff1f5);
+            box-shadow: 0 6px 20px rgba(90, 0, 25, 0.09);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        border-color 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-6px);
+            border-color: #df9bad;
+            box-shadow: 0 15px 32px rgba(90, 0, 25, 0.16);
+        }
+
+        .media-card h3 {
+            margin-top: 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f2d4dd;
+            color: var(--maroon);
+        }
+
+        .audio-feature {
+            grid-column: 1 / -1;
+            padding: 30px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at top right,
+                    rgba(255, 205, 220, 0.65), transparent 55%),
+                linear-gradient(135deg, #fff, #fff0f5);
+            border: 1px solid #e8b7c7;
+            box-shadow: 0 12px 30px rgba(90, 0, 25, 0.13);
+        }
+
+        .audio-feature h3 {
+            font-size: 1.4rem;
+        }
+
+        .audio-feature audio {
+            display: block;
+            width: 100%;
+            max-width: 550px;
+            margin: 20px auto 5px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 100%;
+            margin: 10px 0;
+        }
+
+        .orientation-video {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 15px auto;
+            border: 4px solid white;
+            border-radius: 15px;
+            background: #28000b;
+            box-shadow: 0 7px 20px rgba(90, 0, 25, 0.16);
+        }
+
+        .tiktok-frame {
+            display: block;
+            width: 100%;
+            max-width: 325px;
+            height: 575px;
+            margin: 15px auto;
+            border: 4px solid white;
+            border-radius: 15px;
+            background: #fff0f4;
+            box-shadow: 0 7px 20px rgba(90, 0, 25, 0.14);
+        }
+
+        /* =====================================
+           11. REGISTRATION FORM
+        ===================================== */
+        .registration-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group > label,
+        .form-label {
+            color: var(--dark-maroon);
+            font-weight: 700;
+        }
+
+        .form-group input:not([type="radio"]):not([type="checkbox"]),
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            min-height: 45px;
+            padding: 12px 14px;
+            border: 1px solid #e7c4ce;
+            border-radius: 11px;
+            background: #fffafb;
+            color: var(--text);
+            font: inherit;
+            transition: border-color 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--red);
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(179, 19, 53, 0.10);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .choice-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            padding: 12px;
+            border: 1px solid #efd5dd;
+            border-radius: 12px;
+            background: #fff7f9;
+        }
+
+        .choice-list label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .choice-list input {
+            accent-color: var(--maroon);
+            width: 17px;
+            height: 17px;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+            padding-top: 22px;
+            border-top: 1px solid #f0d7df;
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #67505a, #8b707b);
+        }
+
+        .reset-button:hover {
+            background: linear-gradient(135deg, #49333d, #72535f);
+        }
+
+        .privacy-note {
+            margin-top: 20px;
+            padding: 12px 15px;
+            border-left: 4px solid #c55a78;
+            border-radius: 5px;
+            background: #fff1f5;
+            color: #704c58;
+            font-size: 0.9rem;
+        }
+
+        /* =====================================
+           12. FOOTER
+        ===================================== */
+        .footer {
+            position: relative;
+            overflow: hidden;
+            padding: 35px 20px;
+            background: linear-gradient(
+                135deg, var(--dark-maroon), var(--maroon), #a91d40
+            );
+            color: white;
+            text-align: center;
+        }
+
+        .footer h3 {
+            margin-top: 0;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: #ffe5ec;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .footer a:hover {
+            color: #ffd0de;
+        }
+
+        /* =====================================
+           13. RESPONSIVE DESIGN
+        ===================================== */
+        @media (max-width: 900px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .featured-card:last-child {
+                grid-column: 1 / -1;
+                width: calc(50% - 12px);
+                justify-self: center;
+            }
+
+            .featured-card:last-child .featured-picture {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            main {
+                width: 94%;
+                margin-top: 22px;
+            }
+
+            .section {
+                padding: 22px 17px;
+                border-radius: 18px;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .audio-feature {
+                grid-column: 1;
+                padding: 22px 16px;
+            }
+
+            .registration-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .navigation {
+                gap: 4px;
+            }
+
+            .navigation a {
+                padding: 8px 10px;
+                font-size: 0.82rem;
+            }
+
+            .header {
+                padding: 35px 15px 40px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .featured-card:last-child {
+                grid-column: auto;
+                width: 100%;
+            }
+
+            .featured-picture {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo {
+                width: 100px;
+            }
+
+            .navigation a {
+                font-size: 0.76rem;
+                padding: 7px 8px;
+            }
+
+            .button {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .tiktok-frame {
+                height: 500px;
+            }
+
+            .featured-picture {
+                height: 250px;
+            }
+        }
+
+        /* =====================================
+           14. ACCESSIBILITY
+        ===================================== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="top">
+
+        <a class="logo-link"
+           href="https://www.ctu.edu.ph"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Visit the Cebu Technological University website">
+
+            <img class="logo"
+                 src="bsit-logo.png"
+                 alt="BSIT Logo">
+
+        </a>
+
+        <h1>BSIT Student Registration System</h1>
+
+        <h2>Cebu Technological University – Argao Campus</h2>
+
+        <div class="header-tag">
+            ✦ LEARN · INNOVATE · CREATE ✦
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navigation" aria-label="Main navigation">
+
+        <a href="#top">Home</a>
+        <a href="#featured-students">Featured Students</a>
+        <a href="#student-information">Students</a>
+        <a href="#multimedia">Multimedia</a>
+        <a href="#registration-form">Register</a>
+
+        <a href="https://www.ctu.edu.ph"
+           target="_blank"
+           rel="noopener noreferrer">
+            CTU Website ↗
+        </a>
+
+    </nav>
+
+    <main>
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome-card">
+
+            <h2>Welcome to the BSIT Registration Webpage!</h2>
+
+            <div class="title-line"></div>
+
+            <p class="welcome-note">
+                Welcome to the BSIT Student Registration Webpage.
+                This webpage provides student information and a
+                registration form for BSIT students. Explore the
+                page to learn more about our students, multimedia
+                resources, and registration details.
+            </p>
+
+            <a class="button" href="#featured-students">
+                Meet Our Featured Students ✦
+            </a>
+
+        </section>
+
+        <!-- FEATURED STUDENTS SECTION -->
+        <section class="section featured-section" id="featured-students">
+
+            <div class="featured-heading">
+
+                <span class="featured-label">✦ STUDENT SPOTLIGHT ✦</span>
+
+                <h2 class="section-title">FEATURED STUDENTS</h2>
+
+                <h3>Best Programmers</h3>
+
+                <div class="title-line"></div>
+
+                <p class="section-subtitle">
+                    Meet our featured BSIT students who represent
+                    creativity, logical thinking, and a passion for
+                    technology. Every great programmer starts with
+                    curiosity, practice, and the willingness to learn.
+                </p>
+
+            </div>
+
+            <div class="featured-grid">
+
+                <!-- KOBE BASANAL -->
+                <article class="featured-card">
+
+                    <div class="featured-picture-frame">
+
+                        <img class="featured-picture"
+                             src="kobe.jpg"
+                             alt="Portrait of featured student Kobe Basanal">
+
+                    </div>
+
+                    <h3>Kobe Basanal</h3>
+
+                    <span class="featured-role">PROGRAMMING ENTHUSIAST</span>
+
+                    <p class="featured-description">
+                        A developing programmer who explores how
+                        computer programs work and how technology can
+                        solve everyday problems. Through practice and
+                        logical thinking, Kobe can continue building
+                        skills in writing code, finding errors, and
+                        developing useful software applications.
+                    </p>
+
+                    <div class="featured-skills">
+                        <span class="skill-tag">Problem-Solving</span>
+                        <span class="skill-tag">Coding</span>
+                        <span class="skill-tag">Debugging</span>
+                    </div>
+
+                </article>
+
+                <!-- KRISTA BALDERAS -->
+                <article class="featured-card">
+
+                    <div class="featured-picture-frame">
+
+                        <img class="featured-picture"
+                             src="krista.jpg"
+                             alt="Portrait of featured student Krista Balderas">
+
+                    </div>
+
+                    <h3>Krista Balderas</h3>
+
+                    <span class="featured-role">WEB DEVELOPMENT ENTHUSIAST</span>
+
+                    <p class="featured-description">
+                        A creative IT student interested in combining
+                        design and technology to create engaging
+                        webpages. By learning HTML, CSS, and
+                        programming fundamentals, Krista can turn
+                        ideas into responsive web designs while
+                        improving her creativity and technical skills.
+                    </p>
+
+                    <div class="featured-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">Web Design</span>
+                    </div>
+
+                </article>
+
+                <!-- BLESILDA RODRIGUEZ -->
+                <article class="featured-card">
+
+                    <div class="featured-picture-frame">
+
+                        <img class="featured-picture"
+                             src="blesilda.jpg"
+                             alt="Portrait of featured student Blesilda Rodriguez">
+
+                    </div>
+
+                    <h3>Blesilda Rodriguez</h3>
+
+                    <span class="featured-role">FUTURE SOFTWARE DEVELOPER</span>
+
+                    <p class="featured-description">
+                        An aspiring IT professional with opportunities
+                        to explore software development, application
+                        design, and digital solutions. By strengthening
+                        her analytical thinking and learning different
+                        programming concepts, Blesilda can develop
+                        practical solutions to real-world challenges.
+                    </p>
+
+                    <div class="featured-skills">
+                        <span class="skill-tag">Software</span>
+                        <span class="skill-tag">Algorithms</span>
+                        <span class="skill-tag">Innovation</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="featured-note">
+                ✧ Every programmer has a starting point.
+                Keep learning, keep creating, and keep improving! ✧
+            </div>
+
+        </section>
+
+        <!-- STUDENT INFORMATION -->
+        <section class="section" id="student-information">
+
+            <h2 class="section-title">Student Information</h2>
+
+            <div class="title-line"></div>
+
+            <p class="section-subtitle">
+                Meet the students in our sample BSIT student directory.
+            </p>
+
+            <div class="table-wrapper">
+
+                <table class="student-table">
+
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>Program</th>
+                            <th>Year Level</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>2026-0001</td>
+                            <td>Krista Innova Balderas</td>
+                            <td>BSIT</td>
+                            <td>2nd Year</td>
+                            <td>krista@gmail.com</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-0002</td>
+                            <td>Kobe D. Basanal</td>
+                            <td>BSIT</td>
+                            <td>2nd Year</td>
+                            <td>kobe@gmail.com</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-0003</td>
+                            <td>Evah Aguire</td>
+                            <td>BSIT</td>
+                            <td>1st Year</td>
+                            <td>evah@gmail.com</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-0004</td>
+                            <td>Blesilda Rodriguez</td>
+                            <td>BSIT</td>
+                            <td>1st Year</td>
+                            <td>blesyou@gmail.com</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-0005</td>
+                            <td>Amber Guevarra</td>
+                            <td>BSIT</td>
+                            <td>4th Year</td>
+                            <td>amber@missionaries.com</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- MULTIMEDIA SECTION -->
+        <section class="section" id="multimedia">
+
+            <h2 class="section-title">BSIT Multimedia</h2>
+
+            <div class="title-line"></div>
+
+            <p class="section-subtitle">
+                Enjoy the welcome audio first, followed by our student
+                orientation video and embedded TikTok entertainment.
+            </p>
+
+            <div class="media-grid">
+
+                <!-- AUDIO FIRST -->
+                <article class="media-card audio-feature">
+
+                    <h3>♫ Welcome Audio</h3>
+
+                    <p>
+                        Listen to the welcome audio for the BSIT Student
+                        Registration Webpage before exploring the videos.
+                    </p>
+
+                    <audio controls>
+                        <source src="welcome.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                </article>
+
+                <!-- ORIENTATION VIDEO -->
+                <article class="media-card">
+
+                    <h3>▶ BSIT Student Orientation Video</h3>
+
+                    <p>
+                        Watch this short orientation video related
+                        to students, education, or BSIT.
+                    </p>
+
+                    <video class="orientation-video" controls>
+                        <source src="orientation.mp4" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
+
+                    <p>
+                        <strong>Video Description:</strong>
+                        This video is an orientation resource intended
+                        to provide information relevant to students.
+                    </p>
+
+                </article>
+
+                <!-- TIKTOK VIDEO -->
+                <article class="media-card">
+
+                    <h3>♡ Embedded Entertainment TikTok Video</h3>
+
+                    <p>
+                        Watch this externally embedded TikTok video.
+                    </p>
+
+                    <iframe class="tiktok-frame"
+                            src="https://www.tiktok.com/player/v1/7597787261148613906"
+                            title="Embedded TikTok entertainment video"
+                            loading="lazy"
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                    </iframe>
+
+                    <p>
+                        <strong>Video Description:</strong>
+                        This externally embedded meme TikTok video
+                        is included as an additional multimedia resource
+                        for entertainment purposes.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- REGISTRATION FORM -->
+        <section class="section" id="registration-form">
+
+            <h2 class="section-title">Student Registration Form</h2>
+
+            <div class="title-line"></div>
+
+            <p class="section-subtitle">
+                Fill out the required information below.
+                Fields marked as required must be completed.
+            </p>
+
+            <form action="#" method="get">
+
+                <div class="registration-form">
+
+                    <div class="form-group">
+                        <label for="fullname">Full Name *</label>
+                        <input type="text"
+                               id="fullname"
+                               name="fullname"
+                               placeholder="Enter your full name"
+                               autocomplete="name"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               placeholder="you@example.com"
+                               autocomplete="email"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               placeholder="Create a password"
+                               autocomplete="new-password"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age *</label>
+                        <input type="number"
+                               id="age"
+                               name="age"
+                               min="15"
+                               max="100"
+                               placeholder="Enter your age"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate">Birthdate *</label>
+                        <input type="date"
+                               id="birthdate"
+                               name="birthdate"
+                               autocomplete="bday"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel"
+                               id="mobile"
+                               name="mobile"
+                               placeholder="09XXXXXXXXX"
+                               autocomplete="tel"
+                               required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="program">Program *</label>
+
+                        <select id="program" name="program" required>
+                            <option value="">-- Select Program --</option>
+
+                            <option value="BSIT">
+                                Bachelor of Science in Information Technology
+                            </option>
+
+                            <option value="BSCS">
+                                Bachelor of Science in Computer Science
+                            </option>
+
+                            <option value="BSIS">
+                                Bachelor of Science in Information Systems
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- YEAR LEVEL -->
+                    <div class="form-group full-width">
+
+                        <span class="form-label">Year Level *</span>
+
+                        <div class="choice-list">
+
+                            <label>
+                                <input type="radio"
+                                       id="first"
+                                       name="yearlevel"
+                                       value="1st Year"
+                                       required>
+                                1st Year
+                            </label>
+
+                            <label>
+                                <input type="radio"
+                                       id="second"
+                                       name="yearlevel"
+                                       value="2nd Year">
+                                2nd Year
+                            </label>
+
+                            <label>
+                                <input type="radio"
+                                       id="third"
+                                       name="yearlevel"
+                                       value="3rd Year">
+                                3rd Year
+                            </label>
+
+                            <label>
+                                <input type="radio"
+                                       id="fourth"
+                                       name="yearlevel"
+                                       value="4th Year">
+                                4th Year
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PROGRAMMING SKILLS -->
+                    <div class="form-group full-width">
+
+                        <span class="form-label">Programming Skills</span>
+
+                        <div class="choice-list">
+
+                            <label>
+                                <input type="checkbox"
+                                       id="python"
+                                       name="skills"
+                                       value="Python">
+                                Python
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       id="java"
+                                       name="skills"
+                                       value="Java">
+                                Java
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       id="cpp"
+                                       name="skills"
+                                       value="C++">
+                                C++
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       id="html"
+                                       name="skills"
+                                       value="HTML">
+                                HTML
+                            </label>
+
+                            <label>
+                                <input type="checkbox"
+                                       id="javascript"
+                                       name="skills"
+                                       value="JavaScript">
+                                JavaScript
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ADDRESS -->
+                    <div class="form-group full-width">
+
+                        <label for="address">Address</label>
+
+                        <textarea id="address"
+                                  name="address"
+                                  autocomplete="street-address"
+                                  placeholder="Enter your address here..."></textarea>
+
+                    </div>
+
+                </div>
+
+                <p class="privacy-note">
+                    <strong>Reminder:</strong>
+                    This is a demonstration registration form.
+                    Do not enter real passwords or sensitive personal
+                    information on a webpage without appropriate security.
+                </p>
+
+                <div class="form-actions">
+
+                    <button class="button" type="submit">
+                        Submit Registration ✦
+                    </button>
+
+                    <button class="button reset-button" type="reset">
+                        Reset Form ↺
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <h3>BSIT Student Registration System</h3>
+
+        <p>Cebu Technological University – Argao Campus</p>
+
+        <p>
+            <a href="#top">Back to Top ↑</a>
+        </p>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+
+        <p>&copy; 2026 All Rights Reserved</p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Educational Background</title>
+
+    <style>
+        /* General Styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E6;
+            color: #654438;
+            line-height: 1.7;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #C75B16;
+            padding: 18px 15px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 7px 12px;
+            transition: color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFE0C2;
+            transform: translateY(-3px);
+        }
+
+        nav a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid #654438;
+            outline-offset: 4px;
+        }
+
+        /* Page Header */
+        header {
+            background: linear-gradient(135deg, #E87524, #C75B16);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            text-shadow: 3px 3px 5px #78350F;
+            margin: 0 0 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* Main Content */
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 2rem;
+            margin: 40px 0 25px;
+        }
+
+        /* Education Cards */
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .education-card {
+            background-color: #FFFDF9;
+            padding: 22px;
+            border-radius: 15px;
+            border-top: 5px solid #E87524;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .education-card:nth-child(even) {
+            background-color: #FFE0C2;
+        }
+
+        .education-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(101, 68, 56, 0.25);
+            background-color: #FFF0E0;
+        }
+
+        .education-card h2 {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        /* Images */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: 0.9;
+
+            box-shadow: 0 4px 12px rgba(101, 68, 56, 0.2);
+
+            transition: transform 0.4s ease,
+                        opacity 0.4s ease,
+                        box-shadow 0.4s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.04) rotate(1deg);
+            opacity: 1;
+            box-shadow: 0 8px 18px rgba(101, 68, 56, 0.3);
+        }
+
+        /* Back Button */
+        .back-container {
+            text-align: center;
+            margin: 45px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #C75B16;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: background-color 0.3s ease,
+                        transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #873D0D;
+            transform: scale(1.06);
+            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.25);
+        }
+
+        /* Keyframe Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #C75B16;
+            color: white;
+            text-align: center;
+            padding: 22px 15px;
+            margin-top: 40px;
+        }
+
+        /* Tablet Layout */
+        @media (max-width: 900px) {
+            .education-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 600px) {
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 40px 15px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            nav a {
+                margin: 5px 7px;
+                font-size: 0.9rem;
+            }
+
+            .image-container img {
+                height: 220px;
+            }
+        }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav aria-label="Main navigation">
+        <a href="allaboutkrista.html">HOME</a>
+        <a href="education.html">EDUCATIONAL BACKGROUND</a>
+        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
+        <a href="future.html">MY FUTURE GOAL</a>
+        <a href="website.html">FAVORITE WEBSITE</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>MY EDUCATIONAL BACKGROUND</h1>
+        <p>My journey from elementary school to college</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2 class="section-title">My Academic Journey</h2>
+
+            <div class="education-container">
+
+                <!-- Elementary -->
+                <article class="education-card">
+                    <h2>Elementary</h2>
+
+                    <div class="image-container">
+                        <img src="elementary1.jpg"
+                             alt="Elementary school memory one">
+
+                        <img src="elementary2.jpg"
+                             alt="Elementary school memory two">
+                    </div>
+
+                    <p>
+                        I finished <strong>Grade 1 at Cainta
+                        Elementary School</strong>. After Grade 1,
+                        I transferred to <strong>Sua Elementary
+                        School</strong>, where I continued my
+                        elementary education and finished
+                        <strong>Grade 2 up to Grade 6</strong>.
+                    </p>
+
+                    <p>
+                        My elementary years were an important part
+                        of my journey because they helped me build
+                        the foundation for my future studies.
+                    </p>
+                </article>
+
+                <!-- High School -->
+                <article class="education-card">
+                    <h2>High School</h2>
+
+                    <div class="image-container">
+                        <img src="highschool1.jpg"
+                             alt="High school memory one">
+
+                        <img src="highschool2.jpg"
+                             alt="High school memory two">
+                    </div>
+
+                    <p>
+                        I completed my <strong>Junior High School
+                        up to Senior High School</strong> at
+                        <strong>Argao National High School</strong>.
+                        For Senior High School, I took the
+                        <strong>STEM (Science, Technology,
+                        Engineering, and Mathematics) strand</strong>.
+                    </p>
+
+                    <p>
+                        My STEM experience helped me develop my
+                        interest in technology and prepared me
+                        for my college studies.
+                    </p>
+                </article>
+
+                <!-- College -->
+                <article class="education-card">
+                    <h2>College</h2>
+
+                    <div class="image-container">
+                        <img src="college1.jpg"
+                             alt="College memory one">
+
+                        <img src="college2.jpg"
+                             alt="College memory two">
+                    </div>
+
+                    <p>
+                        Currently, I am a
+                        <strong>second-year Bachelor of Science
+                        in Information Technology (BSIT)
+                        student</strong> at
+                        <strong>Cebu Technological University -
+                        Argao Campus</strong>.
+                    </p>
+
+                    <p>
+                        I chose this program because I want to
+                        learn more about technology, programming,
+                        and the different fields of Information
+                        Technology.
+                    </p>
+
+                    <p>
+                        Although studying IT can be challenging,
+                        I hope to continue improving my skills
+                        and growing as a student.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Back to Homepage -->
+        <div class="back-container">
+            <a href="allaboutkrista.html" class="button">
+                &larr; BACK TO HOMEPAGE
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+        <p>Made with 🧡 by Krista Innova S. Balderas</p>
+        <p>My Personal Biography &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
+

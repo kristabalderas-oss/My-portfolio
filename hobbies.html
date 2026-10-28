@@ -1,0 +1,457 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Hobbies and Interests</title>
+
+    <style>
+        /* General Styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E6;
+            color: #654438;
+            line-height: 1.7;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #C75B16;
+            padding: 18px 15px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 7px 12px;
+            transition: color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFE0C2;
+            transform: translateY(-3px);
+        }
+
+        nav a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid #654438;
+            outline-offset: 4px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #E87524, #C75B16);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            text-shadow: 3px 3px 5px #78350F;
+            margin: 0 0 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* Main Content */
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 2rem;
+            margin: 40px 0 25px;
+        }
+
+        /* Introduction Card */
+        .intro-card {
+            background-color: #FFFDF9;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 22px rgba(101, 68, 56, 0.22);
+        }
+
+        /* Artists Section */
+        .artist-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .artist-card {
+            background-color: #FFE0C2;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 5px solid #E87524;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+            text-align: center;
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(101, 68, 56, 0.25);
+            background-color: #FFF0E0;
+        }
+
+        .artist-card img {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.2);
+
+            transition: transform 0.4s ease,
+                        opacity 0.4s ease;
+        }
+
+        .artist-card img:hover {
+            transform: scale(1.04) rotate(1deg);
+            opacity: 1;
+        }
+
+        /* Artwork Gallery */
+        .artwork-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .artwork-card {
+            background-color: #FFFDF9;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 12px 24px rgba(101, 68, 56, 0.25);
+        }
+
+        .artwork-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0.9;
+
+            transition: opacity 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        .artwork-card img:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .artwork-card p {
+            text-align: center;
+            color: #C75B16;
+            font-weight: bold;
+            margin: 8px 0 2px;
+        }
+
+        /* Back Button */
+        .back-container {
+            text-align: center;
+            margin: 45px 0;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #C75B16;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: background-color 0.3s ease,
+                        transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #873D0D;
+            transform: scale(1.06);
+            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.25);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #C75B16;
+            color: white;
+            text-align: center;
+            padding: 22px 15px;
+            margin-top: 40px;
+        }
+
+        /* Tablet Layout */
+        @media (max-width: 900px) {
+            .artwork-gallery {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 15px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            nav a {
+                margin: 5px 7px;
+                font-size: 0.9rem;
+            }
+
+            .artist-container {
+                grid-template-columns: 1fr;
+            }
+
+            .artwork-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .intro-card,
+            .artist-card {
+                padding: 20px;
+            }
+        }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav aria-label="Main navigation">
+        <a href="allaboutkrista.html">HOME</a>
+        <a href="education.html">EDUCATIONAL BACKGROUND</a>
+        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
+        <a href="future.html">MY FUTURE GOAL</a>
+        <a href="website.html">FAVORITE WEBSITE</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>MY HOBBIES AND INTERESTS</h1>
+        <p>A little look into the things I love doing.</p>
+    </header>
+
+    <main>
+
+        <!-- Introduction -->
+        <section>
+            <h2 class="section-title">Things I Enjoy</h2>
+
+            <div class="intro-card">
+                <p>
+                    My hobbies and interests are mostly centered around
+                    <strong>art, creativity, entertainment, and
+                    self-expression</strong>. I enjoy spending my free
+                    time drawing and experimenting with different kinds
+                    of art materials.
+                </p>
+
+                <p>
+                    I also love reading manhwa, watching anime and movies,
+                    playing games, and listening to music. These activities
+                    allow me to relax, express myself, and enjoy the
+                    things that inspire my imagination.
+                </p>
+            </div>
+        </section>
+
+        <!-- Favorite Artists -->
+        <section>
+            <h2 class="section-title">Artists I Mainly Listen To</h2>
+
+            <div class="artist-container">
+
+                <article class="artist-card">
+                    <img src="artist1.jpg"
+                         alt="First favorite music artist">
+
+                    <h3>My Favorite Artist</h3>
+
+                    <p>
+                        I enjoy listening to artists whose music
+                        expresses different emotions and experiences
+                        that feel familiar and relatable.
+                    </p>
+                </article>
+
+                <article class="artist-card">
+                    <img src="artist2.jpg"
+                         alt="Second favorite music artist">
+
+                    <h3>Another Favorite Artist</h3>
+
+                    <p>
+                        Music helps me create a certain mood, reflect
+                        on my thoughts, and relax. Whether I am happy,
+                        emotional, or enjoying my free time, it is
+                        something I can always come back to.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Artworks -->
+        <section>
+            <h2 class="section-title">My Artworks</h2>
+
+            <div class="artwork-gallery">
+
+                <div class="artwork-card">
+                    <img src="artwork1.jpg" alt="Artwork 1 by Krista">
+                    <p>Artwork 1</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork2.jpg" alt="Artwork 2 by Krista">
+                    <p>Artwork 2</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork3.jpg" alt="Artwork 3 by Krista">
+                    <p>Artwork 3</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork4.jpg" alt="Artwork 4 by Krista">
+                    <p>Artwork 4</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork5.jpg" alt="Artwork 5 by Krista">
+                    <p>Artwork 5</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork6.jpg" alt="Artwork 6 by Krista">
+                    <p>Artwork 6</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork7.jpg" alt="Artwork 7 by Krista">
+                    <p>Artwork 7</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork8.jpg" alt="Artwork 8 by Krista">
+                    <p>Artwork 8</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork9.jpg" alt="Artwork 9 by Krista">
+                    <p>Artwork 9</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork10.jpg" alt="Artwork 10 by Krista">
+                    <p>Artwork 10</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Back to Homepage -->
+        <div class="back-container">
+            <a href="allaboutkrista.html" class="button">
+                &larr; BACK TO HOMEPAGE
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+        <p>Made with 🧡 by Krista Innova S. Balderas</p>
+        <p>My Personal Biography &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
+```

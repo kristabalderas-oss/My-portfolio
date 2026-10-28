@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E6;
+            color: #654438;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            width: 90%;
+            margin: 25px auto;
+            padding: 18px;
+            background-color: #C75B16;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.15);
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 5px 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFE0C2;
+            transform: translateY(-3px);
+        }
+
+        nav a:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #654438;
+            outline-offset: 4px;
+        }
+
+        /* Main heading */
+        header {
+            width: 90%;
+            margin: 30px auto;
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #E87524, #C75B16);
+            color: white;
+            border-radius: 15px;
+            animation: fadeIn 1s ease;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            text-shadow: 3px 3px 5px rgba(70, 35, 15, 0.4);
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        /* General content sections */
+        main {
+            width: 85%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .website-card,
+        .content-card {
+            margin-bottom: 25px;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.12);
+            transition: transform 0.35s ease,
+                        box-shadow 0.35s ease,
+                        background-color 0.35s ease;
+            animation: fadeIn 1s ease;
+        }
+
+        .website-card {
+            background-color: #FFFDF9;
+            text-align: center;
+            border: 2px solid #FFE0C2;
+        }
+
+        .content-card {
+            background-color: #FFE0C2;
+        }
+
+        .website-card:hover,
+        .content-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 12px 25px rgba(101, 68, 56, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #C75B16;
+            font-family: Georgia, serif;
+            font-size: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Website image */
+        .website-image {
+            display: block;
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            margin: 0 auto 25px;
+            border-radius: 12px;
+            opacity: 0.92;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .website-image:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* Visit Medium button */
+        .visit-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #C75B16;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease,
+                        transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .visit-button:hover {
+            background-color: #9F4210;
+            transform: scale(1.07);
+            box-shadow: 0 5px 12px rgba(101, 68, 56, 0.25);
+        }
+
+        /* Back button */
+        .back-link {
+            display: inline-block;
+            margin: 5px 0 30px;
+            color: #C75B16;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #9F4210;
+            transform: translateX(-5px);
+        }
+
+        /* Footer */
+        footer {
+            width: 85%;
+            margin: 0 auto;
+            padding: 20px 10px;
+            border-top: 2px solid #E87524;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav {
+                width: 94%;
+                padding: 12px;
+            }
+
+            nav a {
+                margin: 6px 8px;
+                font-size: 12px;
+            }
+
+            header,
+            main,
+            footer {
+                width: 92%;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            .website-card,
+            .content-card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        /* Accessibility: reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="allaboutkrista.html">HOME</a>
+        <a href="education.html">EDUCATIONAL BACKGROUND</a>
+        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
+        <a href="future.html">MY FUTURE GOAL</a>
+        <a href="website.html">FAVORITE WEBSITE</a>
+    </nav>
+
+    <!-- Page Heading -->
+    <header>
+        <h1>MY FAVORITE WEBSITE</h1>
+        <p>A place where I can read, explore, and discover new ideas.</p>
+    </header>
+
+    <main>
+
+        <!-- Favorite Website -->
+        <section class="website-card">
+            <img
+                src="medium.jpg"
+                alt="Preview of the Medium website"
+                class="website-image"
+            >
+
+            <a
+                href="https://medium.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="visit-button"
+            >
+                VISIT MEDIUM ↗
+            </a>
+        </section>
+
+        <!-- About Medium -->
+        <section class="content-card">
+            <h2>About the Website</h2>
+
+            <p>
+                <strong>Medium</strong> is an online publishing platform
+                where people can read and share different kinds of
+                stories, articles, poems, opinions, and ideas. It has many
+                topics to explore, which makes it a good place for people
+                who enjoy reading and discovering new perspectives.
+            </p>
+
+            <p>
+                What I like about Medium is that there are many different
+                writers and topics available on the site. I can find
+                articles about things that interest me while also
+                discovering subjects that I have never thought about
+                before. It is a simple website, but there is always
+                something new to read and learn from.
+            </p>
+        </section>
+
+        <!-- How I Found Medium -->
+        <section class="content-card">
+            <h2>How I Found This Website</h2>
+
+            <p>
+                I first remembered coming across a TikTok video that
+                suggested different articles and websites that were worth
+                reading. One of the sites mentioned in the video was
+                <strong>Medium</strong>, so I became curious and decided
+                to check it out for myself.
+            </p>
+
+            <p>
+                At first, I only planned to read one article because I was
+                simply curious about what the website had to offer.
+                However, after reading the article, I found myself
+                interested in exploring more of the stories and topics
+                available on the site. I started discovering different
+                writers and reading articles whenever I had free time.
+            </p>
+
+            <p>
+                Eventually, I started to enjoy visiting Medium because it
+                gives me something interesting to read whenever I want to
+                relax or learn something new. What started as a random
+                recommendation from a TikTok video eventually became one
+                of the websites I often visit.
+            </p>
+        </section>
+
+        <!-- Back to Homepage -->
+        <a href="allaboutkrista.html" class="back-link">
+            ← BACK TO HOMEPAGE
+        </a>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+        <p>Made with 🧡 by Krista Innova S. Balderas</p>
+        <p>My Personal Biography &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
+

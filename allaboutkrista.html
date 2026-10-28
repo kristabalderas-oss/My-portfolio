@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Biography</title>
+
+    <style>
+        /* General Styling */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFF3E6;
+            color: #654438;
+            line-height: 1.7;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #C75B16;
+            padding: 18px 20px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 8px 12px;
+            transition: color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFE0C2;
+            transform: translateY(-3px);
+        }
+
+        nav a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid #654438;
+            outline-offset: 4px;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, #E87524, #C75B16);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-shadow: 3px 3px 5px #78350F;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            opacity: 0.9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            animation: floatImage 3s ease-in-out infinite;
+        }
+
+        /* Main Content */
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #C75B16;
+            text-align: center;
+            font-size: 2rem;
+            margin: 45px 0 25px;
+        }
+
+        /* Profile Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .card {
+            background-color: #FFFDF9;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 5px solid #E87524;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.15);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
+                        background-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(101, 68, 56, 0.25);
+            background-color: #FFEBD8;
+        }
+
+        .card h3 {
+            color: #C75B16;
+            font-family: Georgia, serif;
+            font-size: 1.35rem;
+        }
+
+        .card a {
+            color: #C75B16;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            color: #873D0D;
+        }
+
+        /* About Section */
+        .about {
+            background-color: #FFE0C2;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.12);
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .photo-gallery img {
+            width: min(100%, 350px);
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(101, 68, 56, 0.2);
+            transition: transform 0.4s ease,
+                        opacity 0.4s ease;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05) rotate(1deg);
+            opacity: 0.8;
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            background-color: #C75B16;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #873D0D;
+            transform: scale(1.08);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #C75B16;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 50px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 800px) {
+            .card-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            nav a {
+                margin: 6px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 40px 15px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            .about {
+                padding: 20px;
+            }
+
+            .photo-gallery img {
+                height: 280px;
+            }
+        }
+
+        /* Accessibility: Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+        <a href="allaboutkrista.html">HOME</a>
+        <a href="education.html">EDUCATIONAL BACKGROUND</a>
+        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
+        <a href="future.html">MY FUTURE GOAL</a>
+        <a href="website.html">FAVORITE WEBSITE</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <img src="me1.jpg" alt="Photo of Krista"
+             class="hero-image">
+
+        <h1>MY PERSONAL BIOGRAPHY</h1>
+
+        <p>
+            Welcome to my personal webpage!
+        </p>
+
+        <p>
+            A 19-year-old BSIT student who enjoys
+            technology, art, and discovering new things.
+        </p>
+
+        <a href="#about" class="button">GET TO KNOW ME</a>
+    </header>
+
+    <main>
+
+        <!-- Introduction -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+
+            <div class="about">
+                <p>
+                    My name is <strong>Krista Innova S. Balderas</strong>.
+                    I am <strong>19 years old</strong> and currently
+                    residing in Lamacan, Argao.
+                </p>
+
+                <p>
+                    I am currently a Bachelor of Science in Information
+                    Technology student at Cebu Technological University
+                    - Argao Campus.
+                </p>
+
+                <p>
+                    I am the <strong>youngest daughter</strong> in my
+                    family and the last one to complete our little
+                    family circle. Being the youngest has taught me to
+                    appreciate the love, guidance, and support that my
+                    family gives me.
+                </p>
+
+                <p>
+                    I may be the last daughter, but I carry big dreams
+                    and hopes for my future. I enjoy learning, creating,
+                    and discovering new things, especially when it comes
+                    to technology and creativity.
+                </p>
+
+                <p>
+                    I believe every experience, whether good or
+                    challenging, helps me grow into the person I am
+                    meant to be. I hope to become a successful,
+                    independent, and kind-hearted woman who can make
+                    my family proud.
+                </p>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section>
+            <h2 class="section-title">My Photo Gallery</h2>
+
+            <div class="photo-gallery">
+                <img src="me1.jpg" alt="Krista's first photo">
+                <img src="me2.jpg" alt="Krista's second photo">
+            </div>
+        </section>
+
+        <!-- Three Main Profile Cards -->
+        <section>
+            <h2 class="section-title">A Little More About Me</h2>
+
+            <div class="card-container">
+
+                <article class="card">
+                    <h3>My Education</h3>
+
+                    <p>
+                        I am studying BSIT at Cebu Technological
+                        University - Argao Campus.
+                    </p>
+
+                    <p>
+                        At first, I was interested in this program
+                        because I heard it could lead to good
+                        opportunities and a good income. But as I
+                        continued studying, I became intrigued by
+                        how challenging and interesting IT can be.
+                    </p>
+
+                    <p>
+                        I believe that I will continue to learn
+                        and grow to love my program even more.
+                    </p>
+
+                    <a href="education.html">Learn More</a>
+                </article>
+
+                <article class="card">
+                    <h3>My Hobbies and Interests</h3>
+
+                    <p>
+                        My hobbies are mostly centered around art,
+                        creativity, and playing games.
+                    </p>
+
+                    <p>
+                        I love drawing, especially with watercolor.
+                        I also experiment with colored pencils,
+                        oil paints, acrylic paints, and digital art.
+                    </p>
+
+                    <p>
+                        I enjoy reading manhwa, watching anime,
+                        watching romance and tragic movies, and
+                        listening to music during my free time.
+                    </p>
+
+                    <a href="hobbies.html">Explore My Hobbies</a>
+                </article>
+
+                <article class="card">
+                    <h3>My Future Goals</h3>
+
+                    <p>
+                        In the future, I want to become a successful
+                        IT professional and give my family a
+                        comfortable life.
+                    </p>
+
+                    <p>
+                        I dream of traveling around the world,
+                        owning a private island, and enjoying life
+                        without constantly worrying about money.
+                    </p>
+
+                    <p>
+                        I also want to help people in need and
+                        donate to charities when I can.
+                    </p>
+
+                    <a href="future.html">Read My Goals</a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Favorite Website -->
+        <section>
+            <h2 class="section-title">My Favorite Website</h2>
+
+            <div class="about">
+                <p>
+                    One website I often visit is
+                    <strong>Medium</strong>, where I can read
+                    interesting articles, stories, and poems.
+                </p>
+
+		<a href="https://medium.com/"
+   			target="_blank"
+   			rel="noopener noreferrer"
+   			class="button">
+  			VISIT MEDIUM
+		</a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+	<p>
+	    <a href="index.html">Back to student profile works.</a>
+	</p>
+        <p>Made with 🧡 by Krista Innova S. Balderas</p>
+        <p>My Personal Biography &copy; 2026</p>
+        <p>Carpe diem: Seize the day!</p>
+    </footer>
+
+</body>
+</html>
