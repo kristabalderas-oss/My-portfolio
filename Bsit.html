@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- VIEWPORT META TAG APPLIED FROM LESSON -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSIT Student Registration | CTU Argao</title>
 
@@ -74,12 +75,14 @@
             color: var(--red);
         }
 
+        /* RESPONSIVE IMAGES RULE APPLIED FROM LESSON */
         img, video, iframe {
             max-width: 100%;
         }
 
         img {
             height: auto;
+            display: block;
         }
 
         h1, h2, h3 {
@@ -414,7 +417,7 @@
         }
 
         /* =====================================
-           8. FEATURED STUDENTS
+           8. FEATURED STUDENTS (CSS GRID & RESPONSIVE BREAKPOINTS)
         ===================================== */
         .featured-section {
             position: relative;
@@ -454,6 +457,7 @@
             text-shadow: 2px 3px 5px rgba(128, 0, 32, 0.15);
         }
 
+        /* CSS GRID LAYOUT APPLIED FROM LESSON */
         .featured-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -901,8 +905,20 @@
         }
 
         /* =====================================
-           13. RESPONSIVE DESIGN
+           13. RESPONSIVE DESIGN & MEDIA QUERIES
         ===================================== */
+        @media (max-width: 768px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 900px) {
             .featured-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
