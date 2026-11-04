@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- APPLIED FROM LESSON: Viewport Meta Tag for proper mobile scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Biography</title>
 
@@ -24,6 +25,13 @@
             line-height: 1.7;
         }
 
+        /* APPLIED FROM LESSON: Responsive Image Basic CSS Rules */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Navigation Bar */
         nav {
             background-color: #C75B16;
@@ -37,6 +45,20 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            display: inline-block;
         }
 
         nav a {
@@ -64,12 +86,6 @@
             color: #FFE0C2;
             background-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
-        }
-
-        nav a:focus-visible,
-        .button:focus-visible {
-            outline: 3px solid #654438;
-            outline-offset: 4px;
         }
 
         /* Hero Section */
@@ -101,6 +117,18 @@
             opacity: 0.9;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
             animation: floatImage 3s ease-in-out infinite;
+            margin: 0 auto; /* centers block-level responsive image */
+        }
+
+        figure {
+            margin: 0 0 20px 0;
+        }
+
+        figcaption {
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 8px;
+            color: #FFE0C2;
         }
 
         /* Main Content */
@@ -118,12 +146,25 @@
             margin: 45px 0 25px;
         }
 
-        /* Profile Cards */
+        /* APPLIED FROM LESSON: CSS Grid Layout system */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             align-items: stretch;
+        }
+
+        /* APPLIED FROM LESSON: Media Queries for Making the Grid Responsive */
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         .card {
@@ -210,13 +251,19 @@
             transform: scale(1.08);
         }
 
-        /* Animation */
+        /* APPLIED FROM LESSON: Basic Media Query Example for Background Color change on narrow viewports */
+        @media (max-width: 600px) {
+            body {
+                background-color: #FFF9F2;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -227,7 +274,6 @@
             0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-8px);
             }
@@ -242,60 +288,11 @@
             margin-top: 50px;
         }
 
-        /* Responsive Layout */
-        @media (max-width: 800px) {
-            .card-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            nav {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding: 10px 8px;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            nav::-webkit-scrollbar {
-                display: none; /* Hide scrollbar on mobile */
-            }
-
-            nav a {
-                margin: 0 4px;
-                padding: 6px 12px;
-                font-size: 0.82rem;
-                flex-shrink: 0;
-            }
-
-            .card-container {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                padding: 40px 15px;
-            }
-
-            main {
-                width: 92%;
-            }
-
-            .about {
-                padding: 20px;
-            }
-
-            .photo-gallery img {
-                height: 280px;
-            }
-        }
-
         /* Accessibility: Respect reduced-motion preferences */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
             }
-
             *,
             *::before,
             *::after {
@@ -312,18 +309,26 @@
 
     <!-- Navigation -->
     <nav aria-label="Main navigation">
-        <a href="index.html" class="main-link">&larr; STUDENT WORKS</a>
-        <a href="allaboutkrista.html">HOME</a>
-        <a href="education.html">EDUCATIONAL BACKGROUND</a>
-        <a href="hobbies.html">HOBBIES &amp; INTEREST</a>
-        <a href="future.html">MY FUTURE GOAL</a>
-        <a href="website.html">FAVORITE WEBSITE</a>
+        <ul>
+            <li><a href="index.html" class="main-link">&larr; STUDENT WORKS</a></li>
+            <li><a href="allaboutkrista.html">HOME</a></li>
+            <li><a href="education.html">EDUCATIONAL BACKGROUND</a></li>
+            <li><a href="hobbies.html">HOBBIES &amp; INTEREST</a></li>
+            <li><a href="future.html">MY FUTURE GOAL</a></li>
+            <li><a href="website.html">FAVORITE WEBSITE</a></li>
+        </ul>
     </nav>
 
     <!-- Hero Section -->
     <header>
-        <img src="me1.jpg" alt="Photo of Krista"
-             class="hero-image">
+        <!-- APPLIED FROM LESSON: The <picture> element allowing different image sources based on screen width -->
+        <figure>
+            <picture>
+                <source media="(max-width: 600px)" srcset="me1-mobile.jpg">
+                <img src="me1.jpg" alt="Photo of Krista" class="hero-image">
+            </picture>
+            <figcaption>Krista Innova S. Balderas</figcaption>
+        </figure>
 
         <h1>MY PERSONAL BIOGRAPHY</h1>
 
@@ -345,7 +350,7 @@
         <section id="about">
             <h2 class="section-title">About Me</h2>
 
-            <div class="about">
+            <article class="about">
                 <p>
                     My name is <strong>Krista Innova S. Balderas</strong>.
                     I am <strong>19 years old</strong> and currently
@@ -380,7 +385,7 @@
                     independent, and kind-hearted woman who can make
                     my family proud.
                 </p>
-            </div>
+            </article>
         </section>
 
         <!-- Photo Gallery -->
@@ -388,12 +393,16 @@
             <h2 class="section-title">My Photo Gallery</h2>
 
             <div class="photo-gallery">
-                <img src="me1.jpg" alt="Krista's first photo">
-                <img src="me2.jpg" alt="Krista's second photo">
+                <figure>
+                    <img src="me1.jpg" alt="Krista's first photo">
+                </figure>
+                <figure>
+                    <img src="me2.jpg" alt="Krista's second photo">
+                </figure>
             </div>
         </section>
 
-        <!-- Three Main Profile Cards -->
+        <!-- Three Main Profile Cards (Using CSS Grid & Responsive Media Queries) -->
         <section>
             <h2 class="section-title">A Little More About Me</h2>
 
@@ -401,12 +410,10 @@
 
                 <article class="card">
                     <h3>My Education</h3>
-
                     <p>
                         I am studying BSIT at Cebu Technological
                         University - Argao Campus.
                     </p>
-
                     <p>
                         At first, I was interested in this program
                         because I heard it could lead to good
@@ -414,58 +421,48 @@
                         continued studying, I became intrigued by
                         how challenging and interesting IT can be.
                     </p>
-
                     <p>
                         I believe that I will continue to learn
                         and grow to love my program even more.
                     </p>
-
                     <a href="education.html">Learn More</a>
                 </article>
 
                 <article class="card">
                     <h3>My Hobbies and Interests</h3>
-
                     <p>
                         My hobbies are mostly centered around art,
                         creativity, and playing games.
                     </p>
-
                     <p>
                         I love drawing, especially with watercolor.
                         I also experiment with colored pencils,
                         oil paints, acrylic paints, and digital art.
                     </p>
-
                     <p>
                         I enjoy reading manhwa, watching anime,
                         watching romance and tragic movies, and
                         listening to music during my free time.
                     </p>
-
                     <a href="hobbies.html">Explore My Hobbies</a>
                 </article>
 
                 <article class="card">
                     <h3>My Future Goals</h3>
-
                     <p>
                         In the future, I want to become a successful
                         IT professional and give my family a
                         comfortable life.
                     </p>
-
                     <p>
                         I dream of traveling around the world,
                         owning a private island, and enjoying life
                         without constantly worrying about money.
                     </p>
-
                     <p>
                         I also want to help people in need and
                         donate to charities when I can.
                     </p>
-
                     <a href="future.html">Read My Goals</a>
                 </article>
 
@@ -479,7 +476,7 @@
             <div class="about">
                 <p>
                     One website I often visit is
-                    <strong>Medium</strong>, where I can read
+                    <cite><strong>Medium</strong></cite>, where I can read
                     interesting articles, stories, and poems.
                 </p>
 
@@ -498,8 +495,8 @@
     <!-- Footer -->
     <footer>
         <p>Made with 🧡 by Krista Innova S. Balderas</p>
-        <p>My Personal Biography &copy; 2026</p>
-        <p>Carpe diem: Seize the day!</p>
+        <p><small>My Personal Biography &copy; 2026</small></p>
+        <blockquote><p><em>Carpe diem: Seize the day!</em></p></blockquote>
     </footer>
 
 </body>
